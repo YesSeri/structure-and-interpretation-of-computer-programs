@@ -1,18 +1,15 @@
 #lang racket
-(define (cube-iter guess oldguess x)
-  (if (good-enough? guess x)
-      guess
-      (cube-iter (improve guess x)
-                 guess
-                 x)))
+ (define (3rt-iter guess x) 
+   (if (good-enough? guess x) 
+       guess 
+       (3rt-iter (improve guess x) x))) 
 
-(define (good-enough? guess oldguess) 
-   (< (abs (- guess oldguess))
-      (* guess 0.001)))
+(define (good-enough? guess x) 
+   (= (improve guess x) guess)) 
 
-(define (improve guess x)
-  (= (improve guess x) guess)) 
+ (define (improve guess x) 
+   (/ (+ (/ x (square guess)) (* 2 guess)) 3)) 
 
 (define (square x)(* x x))
 
-(define (cbrt x )(cube-iter 1.0 2.0 x))
+(define (cbrt x )(3rt-iter 1.1 x))

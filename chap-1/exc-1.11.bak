@@ -1,0 +1,9 @@
+#lang sicp
+
+(def (rec n)
+  (rec-iter n))
+
+(def (rec-iter n)
+  (if (< 3 n)
+      n
+      ((rec-iter(- n 1)
